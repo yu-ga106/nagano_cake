@@ -1,0 +1,105 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.notice {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: skyblue;
+}
+
+.alert {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: tomato;
+}
+
+.logo-text {
+  font-family: 'Kaushan Script', cursive;
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.top {
+  margin: 0 auto;
+  border-radius: 20px;
+  background-image:url("adpDSC_2759-750x500.jpg");
+  background-color:rgba(255,255,255,0.6);
+  background-blend-mode:lighten;
+  height:500px;
+  width:750px;
+  margin-top: 20px;
+}
+
+.top-text {
+  padding-top: 50px;
+  margin-top: 30px ;
+  text-align: center;
+  line-height: 100px;
+  font-size: 30px;
+}
+.about {
+  margin: 20px auto;
+  border-radius: 20px;
+  background-image:url("adpDSC_2759-750x500.jpg");
+  background-blend-mode:lighten;
+  height:500px;
+  width:750px;
+}
+
+.about-text {
+  margin-top: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 25px;
+}
+
+.nav-link:hover {
+  opacity: .5;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.page-link {
+  color: #000;
+}
+
+.footer-fixed {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #ffdab9;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-text {
+  padding-top: 10px;
+  color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,2 @@
+class CreateItem < ApplicationRecord
+end

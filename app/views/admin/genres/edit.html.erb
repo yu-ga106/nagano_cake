@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col my-5 text-center">
+      <span class="px-4" style="font-size: 30px; background-color: #d3d3d3">ジャンル編集</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1 offset-1">
+      <%= form_with model: @genre, url: edit_admin_genre_path, local:true do |f| %>
+        <strong>ジャンル</strong>
+    </div>
+    <div class="col-3">
+        <%= f.text_field :name, class:"form-control"  %>
+    </div>
+    <div class="col-3">
+        <%= f.submit "変更を保存する", class: "btn btn-info" %>
+      <% end %>
+    </div>
+    <div class="col-1">
+      <%= link_to "戻る", admin_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    </div>
+  </div>
+</div>

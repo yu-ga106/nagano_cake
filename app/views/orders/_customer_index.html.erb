@@ -1,0 +1,44 @@
+<% if orders.present? %>
+  <table class="table table-hovor table-bordered table-condensed">
+    <thead class="bg-light">
+      <tr class="info">
+        <th>注文品</th>
+        <th>配送先</th>
+        <th>注文商品</th>
+        <th>支払金額</th>
+        <th>ステータス</th>
+        <th>注文詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.each do |order| %>
+        <tr>
+          <td>
+            <%= order.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td class="text-left">
+            <%= order.postal_code %><br />
+            <%= order.address %><br />
+            <%= order.name %>
+          </td>
+          <td>
+            <% order.items.each do |item| %>
+              <%= item.name %>
+            <% end %>
+          </td>
+          <td class="text-right">
+            <%= order.total_payment.to_i.to_s(:delimited) %>円
+          </td>
+          <td>
+            <%= order.status %>
+          </td>
+          <td>
+            <%= link_to "注文詳細", order_path(order), class: "glyphicon glyphicon-zoom-in btn btn-success" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+   <p>注文履歴がありません</p>
+  <% end %>

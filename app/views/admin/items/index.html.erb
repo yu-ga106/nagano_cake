@@ -1,0 +1,54 @@
+<div class="col bg-light text-right">
+  <%= form_tag(admin_search_path, method: :get) do %>
+    <%= select(@search_content, :genre_id, Item.get_genre_list) %>
+    <%= submit_tag "絞り込む" %>
+    <%= link_to "一覧に戻る", admin_items_path, class: 'to_index_link py-1 px-1 d-inline btn btn-outline-secondary' %>
+  <% end %>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <span class="px-3" style="font-size: 24px; background-color: #d3d3d3;">商品一覧</span>
+      <p>(全<%= @items.total_count %>件中、<%= @items.count %>)</p>
+        <div class="col-xs-10 col-xs-offset-1">
+          <div class="col tex-right mb-1">
+            <%= link_to new_admin_item_path, class: "new_item" do %>
+              <i class="fas fa-plus-circle fa-2x text-secondary"></i>
+            <% end %>
+          </div>
+          <table class="table table-hover table-bordered table-condensed">
+            <thead class="bg-light">
+              <tr>
+                <th>商品ID</th>
+                <th>商品名</th>
+                <th>税抜価格</th>
+                <th>ジャンル</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @items.each do |item| %>
+                <tr>
+                  <td><%= item.id %></td>
+                  <td>
+                    <%= link_to admin_item_path(item), class: 'btn_link' do %>
+                      <%= item.name %>
+                    <% end %>
+                  </td>
+                  <td class="text-right col-xs-1">
+                    ¥<%= item.price.to_s(:delimited) %>
+                  </td>
+                  <td><%= item.genre.name %></td>
+                  <% if item.is_active == true %>
+                    <td class="col-xs text-success">販売中</td>
+                  <% else %>
+                    <td class="col-xs text-danger">販売停止中</td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+  </div>
+    <%= paginate @items %>
+</div>

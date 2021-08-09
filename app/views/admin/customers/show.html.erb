@@ -1,0 +1,56 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <i class="far fa-user fa-lg"></i>
+      <span class="px-3 mb-2" style="font-size: background-color: #d3d3d3;">
+        <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
+      </span>
+      <table class="table table-borderless mt-4">
+        <tbody>
+          <tr>
+            <td class="info col-xs-2">会員ID</td>
+            <td class="text-left"><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <td class="info col-xs-2">氏名</td>
+            <td class="text-left"><%= @customer.last_name %><%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class="info">フリガナ</td>
+            <td class="text-left"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="info">郵便番号</td>
+            <td class="text-left"><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="info">住所</td>
+            <td class="text-left"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class="info">電話番号</td>
+            <td class="text-left"><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class="info">メールアドレス</td>
+            <td class="info"><%= @customer.email %></td>
+            <tr>
+              <td class="info">会員ステータス</td>
+              <% if @customer.is_deleted == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td class="text-danger">退会済</td>
+              <% end %>
+            </tr>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex">
+        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
+      </div>
+      <div class="colspan">
+        <%= link_to "注文履歴一覧を見る", current_index_admin_order_path(@customer), class: "mr-2 btn btn-info" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="m-4 col-2 bg-light text-center">マイページ</h4>
+      <div class="d-flex">
+        <h4><strong class="information-link"><i class="far fa-user"></i>登録情報</strong></h4>
+        <%= link_to "編集する", edit_customer_registration_path, class: "btn bnt-success ml-3 mb-3" %>
+      </div>
+      <table class="table table-bordred table-condensed">
+        <tbody>
+          <tr>
+            <th class="info col-xs-2 bg-light">氏名</th>
+            <td class="text-left"><%= @customer.last_name %>&ensp;<%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">メールアドレス</th>
+            <td class="text-light"><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">郵便番号</th>
+            <td class="text-left"><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">住所</th>
+            <td class="text-left"><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">電話番号</th>
+            <td class="text-left"><%= @customer.telephone_number %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <table class="table table-borderless">
+        <tr>
+          <th><h5><strong>配送先</strong></h5></th>
+          <td><%= link_to "一覧を見る", addresses_path, data: {"turbolinks" => false}, class: "shipping-btn mr-2 btn btn-primary form-control" %></td>
+        </tr>
+        <tr>
+          <th><h5><strong>注文履歴</strong></h5></th>
+          <td><%= link_to "一覧を見る", orders_path, id: 'order-index', class: "order-btn mr-2 btn btn-primary form-control" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class='col-10 offset-1'>
+      <h4 class="mt-5 bg-light col-4 text-center">ショッピングカート</h4>
+      <div clas="my-5 offset-9">
+        <% unless @cart_items.blank? %>
+          <%= link_to "カートを空にする", all_destroy_path, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+      <table class='table table-hover table-bordered'>
+        <thead class="bg-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% unless @cart_items.blank? %>
+            <% total = 0 %>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td class="p-1"><%= attachment_image_tag(cart_item.item, :image, fallback: "no-image-icon.jpg", class: "item_image mt-0 mb-0 mr-3", style: "width: 65px; height: 50px;") %><%= cart_item.item.name %></td>
+                <td><%= tax_price(cart_item.item.price) %></td>
+                <td class="p-2">
+                  <%= form_with model: cart_item, method: :patch, local: true do |f| %>
+                    <div class="row">
+                      <div class="col">
+                        <%= f.select(:amount, (1..20).to_a, {selected: cart_item.amount}, {class: "form-control p-2"}) %>
+                        <%= f.hidden_field :item_id, value: cart_item.item.id %>
+                      </div>
+                      <div class="col">
+                        <%= f.submit '変更', class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  </td>
+                  <% end %>
+                  <td><%= sub_price(cart_item).to_s(:delimited) %></td>
+                  <td class="p-2"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="6" class="text-center">カートは空です</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 offset-2">
+      <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-4 offset-2 fustify-content-end">
+      <table class="table table-bordered">
+        <% if @cart_items.count != 0 %>
+          <th class="bg-light">合計金額</th>
+          <td><%= total_payment(@cart_items).to_s(:delimited) %></td>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <% unless @cart_items.blank? %>
+      <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

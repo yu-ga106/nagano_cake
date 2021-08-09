@@ -1,0 +1,25 @@
+<div class="col-md-10 mt-5", style="margin-buttom: 150px;">
+  <table class='table table-bordered table-hover'>
+    <thead class="thead-light">
+      <tr>
+        <th col-2>郵便番号</th>
+        <th col-8>住所</th>
+        <th col-2>宛名</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody class="border">
+      <% addresses.each do |address| %>
+        <tr>
+          <td style="width:10%"><%= address.postal_code %></td>
+          <td style="width:60%"><%= address.address %></td>
+          <td style="width:10%"><%= address.name %></td>
+          <td style="width20%">
+            <%= link_to "編集する", edit_address_path(address), class: "btn btn-info" %>
+            <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

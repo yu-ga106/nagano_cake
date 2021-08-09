@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h4 class="text-center m-4 col-3 bg-light mx-auto">退会フォーム</h4>
+      <div class="w-50 mx-auto">
+        <p class="text-center mb-4">退会すると、会員登録情報や<br />
+          これまでの購入履歴が閲覧できなくなります。<br />
+          退会する場合は、「退会する」をクリックしてください。
+        </p>
+        <div class="d-flex justify-content-center">
+          <div>
+            <%= link_to "退会しない", customers_path, class: "btn btn-primary mr-3" %>
+          </div>
+          <div>
+            <%= link_to "退会する", out_customer_path(@customer), method: :patch, class: "btn btn-danger ml-3" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

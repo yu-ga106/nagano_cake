@@ -1,0 +1,19 @@
+<%= form_with model: address, local:true do |f| %>
+
+  <%= render "devise/shared/error_messages", resource: address %>
+
+  <div class="form-group row">
+    <%= f.label :postal_code, "郵便番号（ハイフンなし）", class: "col-md-3" %>
+    <%= f.text_field :postal_code, class: 'col-md-3 form-control postal_code', placeholder: "1231234" %>
+  </div>
+  <div class="form-group row">
+    <%= f.label :address, "住所", class: "col-md-3" %>
+    <%= f.text_field :address, class: 'col-md-7 form-control address', placeholder: "東京都渋谷区代々木神薗町0-0" %>
+  </div>
+  <div class="form-group row">
+    <%= f.label :name, "宛名", class: "col-md-3" %>
+    <%= f.text_field :name, class: 'col-md-3 form-control name', placeholder: "令和太郎" %>
+    <%= f.submit class: 'btn btn-success col-md-1 offset-4' %>
+  </div>
+
+<% end %>

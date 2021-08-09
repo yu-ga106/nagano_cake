@@ -1,0 +1,55 @@
+<div class="container">
+
+  <div class="col-md-4 offset-md-2 my-5">
+    <span class="px-4" style="font-size: 30px; background-color: #d3d3d3">商品新規登録</span>
+  </div>
+
+  <div class="col-md-6 mx-auto my-5">
+
+      <%= render "devise/shared/error_messages", resource: @item %>
+      <%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
+
+        <div class="row mb-3">
+          <%= f.label :image, "商品画像", class: "col-md-4" %>
+          <%= f.attachment_field :image, class: "form-control-file col-md-8 pl-0" %>
+        </div>
+
+        <div class="row mb-3">
+          <%= f.label :name, "商品名", class: "col-md-4" %>
+          <%= f.text_field :name, class: 'form-control col-md-8', placeholder: "商品名" %>
+        </div>
+
+        <div class="row mb-3">
+          <%= f.label :introduction, "商品説明", class: "col-md-4" %>
+          <%= f.text_area :introduction, class: 'form-control col-md-8', placeholder: "ここに説明文を記述します" %>
+        </div>
+
+        <div class="row mb-3">
+          <%= f.label :genre_id, "ジャンル", class: "col-md-4" %>
+          <%= f.select :genre_id, Item.get_genre_list.unshift("-- 選択して下さい --"), {}, {class: 'form-control-sm col-md-8'}%>
+        </div>
+
+        <div class="row mb-3">
+          <%= f.label :price, "税抜価格", class: "col-md-4" %>
+          <%= f.text_field :price, class: 'form-control price col-md-8', placeholder: "1000" %>
+        </div>
+
+        <!--<div class="row mb-3">-->
+        <!--  <#%= f.label :is_active, "商品ステータス", class: "col-md-4"  %>-->
+        <!--  <#%= f.select :is_active, [["販売中", true], ["売り切れ", false]], class: 'col-md-8' %>-->
+        <!--</div>-->
+
+        <div class="row mb-3">
+          <%= f.label :is_active, "商品ステータス", class: "col-md-4"  %>
+          <%= f.radio_button :is_active, true, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span class="mr-5">販売中</span>
+          <%= f.radio_button :is_active, false, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span>販売停止中</span>
+        </div>
+
+        <div class="row my-5">
+          <div class="col-5 offset-3 text-center"><%= f.submit class: 'py-3 px-5 btn btn-success' %></div>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>

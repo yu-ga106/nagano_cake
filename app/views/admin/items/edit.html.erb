@@ -1,0 +1,46 @@
+<div class='col-5 mx-auto'>
+  <h3 class="bg-light mt-5">商品紹介</h3>
+  <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: @item %>
+      <div class="row m-3">
+        <div class="col"><%= f.label :image, "画像" %></div>
+        <div class="col-8"><%= f.attachment_field :image %></div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col"><%= f.label :name, "商品名" %></div>
+        <div class="col-8"><%= f.text_field :name, class: 'form-control' %></div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col"><%= f.label :introduction, "商品説明" %></div>
+        <div class="col-8"><%= f.text_area :introduction, class: 'form-control' %></div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col"><%= f.label :genre_id, "ジャンル", class: "form-select" %></div>
+        <div class="col-8"><%= f.select :genre_id, Item.get_genre_list, class: 'form-control price' %></div>
+      </div>
+
+      <div class="row m-3">
+        <div class="col"><%= f.label :price, "税抜価格" %></div>
+        <div class="col-8"><%= f.text_field :price, class: 'form-control price' %></div>
+      </div>
+
+      <!--<div class="row m-3">-->
+         <!--  <div class="col"><%#= f.label :is_active, "商品ステータス" %></div>-->
+         <!-- <div class="col-8"><%#= f.select :is_active, [["販売中", true], ["売り切れ", false]] %></div>-->
+      <!--</div>-->
+      <div class="row mb-3">
+        <%= f.label :is_active, "商品ステータス", class: "col-md-4" %>
+        <%= f.radio_button :is_active, true, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span class="mr-5">販売中</span>
+        <%= f.radio_button :is_active, false, class: 'form-control-md mr-1', style: "width: 20px; height: 20px;" %><span>販売停止中</span>
+      </div>
+
+      <div class="row">
+        <div class="col-5 offset-3 tex-center"><%= f.submit class: 'btn btn-success form-control' %></div>
+      </div>
+
+    <% end %>
+</div>
